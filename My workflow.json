@@ -1,0 +1,150 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8e3fa843-9ac4-4b06-b98a-c7ea37fa0dde",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "OVcUtvgHBuzqKKq9",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "27656222-65ba-4993-bac3-4ea855f51d64",
+              "leftValue": "={{ $json.Subject }}",
+              "rightValue": "urgent",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f64221a1-ffc0-45cc-8b8a-5550d0387819",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0B2RV7616W",
+          "mode": "list",
+          "cachedResultName": "all-my-automation-lab"
+        },
+        "text": "=Urgent email received: {{ $('Gmail Trigger').item.json.Subject }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        416,
+        -96
+      ],
+      "id": "25593cdf-5e60-455c-b769-2763c96ed1ad",
+      "name": "Send a message",
+      "webhookId": "9d0aa301-b17c-4312-be89-4d02f8994db5",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "Dwl9mjAG7T5T4M8m",
+          "name": "Slack OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        416,
+        96
+      ],
+      "id": "d5049d10-2bcc-40c4-a79c-d0d00347c28b",
+      "name": "No Operation, do nothing"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "618680af-ab0f-433a-aa33-c2cc6329c2b5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6a8ecb3b2bd37672236b8ba2ca440081b541bde1585825edf1f6ac335df70e8e"
+  },
+  "id": "wyQonGHynCm9ong9",
+  "tags": []
+}
