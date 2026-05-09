@@ -47,7 +47,8 @@ Gmail Trigger → IF (subject contains "urgent") → Trello (create card) → Sl
 
 ## 🎥 Demo
 
-https://github.com/kodjoballo/n8n-email-triage-automation/blob/main/demo.mp4
+
+[▶ Click to watch the demo video]([https://github.com/kodjoballo/n8n-email-triage-automation/blob/main/demo.mp4](https://youtu.be/6nT7AwLJTDs))
 
 ---
 
