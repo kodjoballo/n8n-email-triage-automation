@@ -41,7 +41,7 @@ Gmail Trigger → IF (subject contains "urgent") → Trello (create card) → Sl
 
 ## 📸 Workflow Preview
 
-> *(Screenshot of n8n canvas — add yours here)*
+> ![Workflow Preview](workflow-preview.png)
 
 ---
 
