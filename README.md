@@ -62,7 +62,7 @@ Gmail Trigger → IF (subject contains "urgent") → Trello (create card) → Sl
 
 2. **Connect your credentials**
    - Click the Gmail node → add your Gmail OAuth2 credential
-   - Click the Trello node → add your Trello API key (get it at [trello.com/app-key](https://trello.com/app-key))
+   - Click the Trello node → add your Trello API key (get it at [[trello.com/app-key](https://trello.com/app-key](https://trello.com/power-ups/admin))
    - Click the Slack node → authorize your Slack workspace
 
 3. **Configure the workflow**
